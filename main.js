@@ -103,4 +103,54 @@ class LinkedList {
     current.nextNode = null;
     return removedNode;
   }
+
+  // contains(value) returns true if the passed in value is in the list and otherwise returns false.
+  contains(value) {
+    let current = this.head;
+
+    while (current !== null) {
+      if (current.value === value) {
+        return true;
+      }
+      current = current.nextNode;
+    }
+    return false;
+  }
+
+  // find(value) returns the index of the node containing value, or null if not found.
+  find(value) {
+    let current = this.head;
+    let steps = 0;
+
+    while (current !== null) {
+      if (current.value === value) {
+        return steps;
+      }
+      steps++;
+      current = current.nextNode;
+    }
+
+    return null;
+  }
+
+  /*
+  toString represents your LinkedList objects as strings, so you can print them out and preview them in the console. 
+  The format should be: ( value ) -> ( value ) -> ( value ) -> null
+  */
+
+  toString() {
+    let current = this.head;
+    let result = "";
+
+    while (current !== null) {
+      result += `(${current.value})`;
+      current = current.nextNode;
+      if (current !== null) {
+        result += " -> ";
+      }
+    }
+
+    result += " -> null";
+    return result;
+  }
 }
