@@ -153,4 +153,57 @@ class LinkedList {
     result += " -> null";
     return result;
   }
+
+  // Extra credit
+
+  // insertAt(value, index) that inserts a new node with the provided value at the given index.
+  insertAt(value, index) {
+    if (index < 0 || index > this.size()) {
+      return null;
+    }
+
+    let newNode = new Node(value);
+
+    if (index === 0) {
+      this.prepend(value);
+      return;
+    }
+
+    let current = this.head;
+    let steps = 0;
+
+    while (steps < index - 1) {
+      current = current.nextNode;
+      steps++;
+    }
+
+    newNode.nextNode = current.nextNode;
+    current.nextNode = newNode;
+  }
+
+  // removeAt(index) that removes the node at the given index.
+  removeAt(index) {
+    if (index < 0 || index >= this.size()) {
+      return null;
+    }
+
+    if (index === 0) {
+      const removedNode = this.head;
+      this.head = this.head.nextNode;
+      return removedNode;
+    }
+
+    let current = this.head;
+    let steps = 0;
+
+    while (steps < index - 1) {
+      current = current.nextNode;
+      steps++;
+    }
+
+    const removedNode = current.nextNode;
+    current.nextNode = removedNode.nextNode;
+
+    return removedNode;
+  }
 }
